@@ -228,15 +228,15 @@ namespace memory_allocator
 
                     if (b.get_id() == "")
                     {
-                        color = System.Drawing.Color.Orange;
+                        color = System.Drawing.Color.Black;
                     }
                     else if (b.get_id() == "Memory")
                     {
-                        color = System.Drawing.Color.Cyan;
+                        color = System.Drawing.Color.Orange;
                     }
                     else
                     {
-                        color = System.Drawing.Color.GreenYellow;
+                        color = System.Drawing.Color.Yellow;
                     }
                     System.Drawing.Graphics formGraphics = this.CreateGraphics();
 
