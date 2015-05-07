@@ -92,7 +92,11 @@ namespace memory_allocator
                     }
                     else
                     {
-                        
+                        process p = new process("P" + process_id_input.Value.ToString(), process_size_input.Value);
+                        processes_list.Add(p);
+                        process_size_input.Value = 0;
+                        process_id_input.Value = 0;
+                        processes++;
                     }
                 }
                 else
