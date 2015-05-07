@@ -18,6 +18,9 @@ namespace memory_allocator
         List<process> processes_list = new List<process>();
         List<drawing_block> draw_list = new List<drawing_block>();
 
+        decimal capacity;
+        int index = 0;
+
         decimal total_size = 0;
 
         public Form1()
@@ -112,7 +115,26 @@ namespace memory_allocator
 
         private void allocate_button_Click(object sender, EventArgs e)
         {
+            if (holes != holes_count.Value)
+            {
+                MessageBox.Show("Please finish Entering holes first");
+            }
+            else if (processes != processes_count.Value)
+            {
+                MessageBox.Show("Please finish Entering processes first");
+            }
+            else if (holes_count.Value == 0)
+            {
+                MessageBox.Show("No holes are available");
+            }
+            else if (processes_count.Value == 0)
+            {
+                MessageBox.Show("No processes are available to allocate");
+            }
+            else
+            {
 
+            }
         }
     }
 }
