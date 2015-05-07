@@ -137,6 +137,8 @@ namespace memory_allocator
             }
             else
             {
+                allocate_button.Visible = false;
+                reset_button.Visible = true;
                 int x = this.Width - 120;
                 int y = 10;
                 int chart_length = this.Height - 60;
@@ -268,6 +270,15 @@ namespace memory_allocator
                     y += rec_length;
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            allocate_button.Visible = true;
+            reset_button.Visible = false;
+            processes_count.Value = 0;
+            holes_count.Value = 0;
+            this.CreateGraphics().Clear(Form.ActiveForm.BackColor);
         }
     }
 }

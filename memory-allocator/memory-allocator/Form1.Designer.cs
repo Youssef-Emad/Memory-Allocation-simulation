@@ -49,6 +49,7 @@
             this.process_id_label = new System.Windows.Forms.Label();
             this.processes_number_label = new System.Windows.Forms.Label();
             this.allocate_button = new System.Windows.Forms.Button();
+            this.reset_button = new System.Windows.Forms.Button();
             this.allocation_box.SuspendLayout();
             this.holes_box.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hole_size_input)).BeginInit();
@@ -266,11 +267,23 @@
             this.allocate_button.UseVisualStyleBackColor = true;
             this.allocate_button.Click += new System.EventHandler(this.allocate_button_Click);
             // 
+            // reset_button
+            // 
+            this.reset_button.Location = new System.Drawing.Point(335, 415);
+            this.reset_button.Name = "reset_button";
+            this.reset_button.Size = new System.Drawing.Size(126, 38);
+            this.reset_button.TabIndex = 4;
+            this.reset_button.Text = "Reset";
+            this.reset_button.UseVisualStyleBackColor = true;
+            this.reset_button.Visible = false;
+            this.reset_button.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1005, 473);
+            this.Controls.Add(this.reset_button);
             this.Controls.Add(this.allocate_button);
             this.Controls.Add(this.processes_box);
             this.Controls.Add(this.holes_box);
@@ -316,6 +329,7 @@
         private System.Windows.Forms.Label process_id_label;
         private System.Windows.Forms.Label processes_number_label;
         private System.Windows.Forms.Button allocate_button;
+        private System.Windows.Forms.Button reset_button;
     }
 }
 
