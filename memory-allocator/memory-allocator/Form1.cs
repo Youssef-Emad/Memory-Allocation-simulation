@@ -133,7 +133,32 @@ namespace memory_allocator
             }
             else
             {
+                processes_list = processes_list.OrderBy(process => process.get_id()).ToList();
 
+                for (int i = 0; i < processes_list.Count; i++)
+                {
+                    for (int j = 0; j < holes_list.Count; j++)
+                    {
+                        if (first_fit.Checked == true)
+                        {
+                            if (processes_list[i].get_size() <= holes_list[j].get_size())
+                            {
+                                drawing_block b = new drawing_block(processes_list[i].get_id(), holes_list[j].get_address(), processes_list[i].get_size());
+                                draw_list.Add(b);
+                                holes_list[j].update(holes_list[j].get_address() + processes_list[i].get_size(), holes_list[j].get_size() - processes_list[i].get_size());
+                                break;
+                            }
+                        }
+                        else if (best_fit.Checked == true)
+                        {
+                            
+                        }
+                        else if (worst_fit.Checked == true)
+                        {
+                            
+                        }
+                    }
+                }
             }
         }
     }
