@@ -67,7 +67,38 @@ namespace memory_allocator
 
         private void process_button_Click(object sender, EventArgs e)
         {
-
+            if (processes < processes_count.Value)
+                {
+                    if (processes_list.Exists(process => process.get_id() == "P" + process_id_input.Value.ToString()))
+                    {
+                        MessageBox.Show("Process ID already exists");
+                    }
+                    else if (process_size_input.Value == 0)
+                    {
+                        MessageBox.Show("Process size can not be equal zero");
+                    }
+                    else if (process_size_input.Value > max_hole_size)
+                    {
+                        MessageBox.Show("Process size is too large");
+                    }
+                    else
+                    {
+                        process p = new process("P" + process_id_input.Value.ToString(), process_size_input.Value);
+                        processes_list.Add(p);
+                        process_size_input.Value = 0;
+                        process_id_input.Value = 0;
+                        processes++;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Unable to add process , Please increment the number of processes");
+                }
+            }
+            else 
+            {
+                MessageBox.Show("Enter the holes first");
+            }
         }
 
         private void allocate_button_Click(object sender, EventArgs e)

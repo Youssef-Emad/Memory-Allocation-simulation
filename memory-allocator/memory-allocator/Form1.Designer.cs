@@ -42,9 +42,9 @@
             this.holes_count = new System.Windows.Forms.NumericUpDown();
             this.processes_box = new System.Windows.Forms.GroupBox();
             this.process_button = new System.Windows.Forms.Button();
-            this.process_id_input = new System.Windows.Forms.NumericUpDown();
+            this.process_size_input = new System.Windows.Forms.NumericUpDown();
             this.process_size_label = new System.Windows.Forms.Label();
-            this.id_input = new System.Windows.Forms.NumericUpDown();
+            this.process_id_input = new System.Windows.Forms.NumericUpDown();
             this.processes_count = new System.Windows.Forms.NumericUpDown();
             this.process_id_label = new System.Windows.Forms.Label();
             this.processes_number_label = new System.Windows.Forms.Label();
@@ -55,8 +55,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.address_input)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.holes_count)).BeginInit();
             this.processes_box.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.process_size_input)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.process_id_input)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.id_input)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.processes_count)).BeginInit();
             this.SuspendLayout();
             // 
@@ -185,9 +185,9 @@
             // processes_box
             // 
             this.processes_box.Controls.Add(this.process_button);
-            this.processes_box.Controls.Add(this.process_id_input);
+            this.processes_box.Controls.Add(this.process_size_input);
             this.processes_box.Controls.Add(this.process_size_label);
-            this.processes_box.Controls.Add(this.id_input);
+            this.processes_box.Controls.Add(this.process_id_input);
             this.processes_box.Controls.Add(this.processes_count);
             this.processes_box.Controls.Add(this.process_id_label);
             this.processes_box.Controls.Add(this.processes_number_label);
@@ -208,12 +208,12 @@
             this.process_button.UseVisualStyleBackColor = true;
             this.process_button.Click += new System.EventHandler(this.process_button_Click);
             // 
-            // process_id_input
+            // process_size_input
             // 
-            this.process_id_input.Location = new System.Drawing.Point(429, 67);
-            this.process_id_input.Name = "process_id_input";
-            this.process_id_input.Size = new System.Drawing.Size(120, 22);
-            this.process_id_input.TabIndex = 5;
+            this.process_size_input.Location = new System.Drawing.Point(429, 67);
+            this.process_size_input.Name = "process_size_input";
+            this.process_size_input.Size = new System.Drawing.Size(120, 22);
+            this.process_size_input.TabIndex = 5;
             // 
             // process_size_label
             // 
@@ -224,12 +224,12 @@
             this.process_size_label.TabIndex = 4;
             this.process_size_label.Text = "Size";
             // 
-            // id_input
+            // process_id_input
             // 
-            this.id_input.Location = new System.Drawing.Point(167, 65);
-            this.id_input.Name = "id_input";
-            this.id_input.Size = new System.Drawing.Size(120, 22);
-            this.id_input.TabIndex = 3;
+            this.process_id_input.Location = new System.Drawing.Point(167, 65);
+            this.process_id_input.Name = "process_id_input";
+            this.process_id_input.Size = new System.Drawing.Size(120, 22);
+            this.process_id_input.TabIndex = 3;
             // 
             // processes_count
             // 
@@ -264,7 +264,6 @@
             this.allocate_button.TabIndex = 3;
             this.allocate_button.Text = "Allocate";
             this.allocate_button.UseVisualStyleBackColor = true;
-            this.allocate_button.Click += new System.EventHandler(this.allocate_button_Click);
             // 
             // Form1
             // 
@@ -286,8 +285,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.holes_count)).EndInit();
             this.processes_box.ResumeLayout(false);
             this.processes_box.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.process_size_input)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.process_id_input)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.id_input)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.processes_count)).EndInit();
             this.ResumeLayout(false);
 
@@ -309,9 +308,9 @@
         private System.Windows.Forms.NumericUpDown holes_count;
         private System.Windows.Forms.GroupBox processes_box;
         private System.Windows.Forms.Button process_button;
-        private System.Windows.Forms.NumericUpDown process_id_input;
+        private System.Windows.Forms.NumericUpDown process_size_input;
         private System.Windows.Forms.Label process_size_label;
-        private System.Windows.Forms.NumericUpDown id_input;
+        private System.Windows.Forms.NumericUpDown process_id_input;
         private System.Windows.Forms.NumericUpDown processes_count;
         private System.Windows.Forms.Label process_id_label;
         private System.Windows.Forms.Label processes_number_label;
