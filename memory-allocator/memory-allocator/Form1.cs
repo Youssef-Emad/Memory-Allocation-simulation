@@ -133,6 +133,12 @@ namespace memory_allocator
             }
             else
             {
+                int x = this.Width - 120;
+                int y = 10;
+                int chart_length = this.Height - 60;
+                int rec_length = 0;
+                int chart_width = 65;
+
                 processes_list = processes_list.OrderBy(process => process.get_id()).ToList();
 
                 for (int i = 0; i < processes_list.Count; i++)
@@ -210,6 +216,53 @@ namespace memory_allocator
                     }
                 }
 
+                draw_list = draw_list.OrderBy(drawing_block => drawing_block.get_address()).ToList();
+
+                foreach (drawing_block b in draw_list)
+                {
+                    Color color;
+
+                    if (b.get_id() == "")
+                    {
+                        color = System.Drawing.Color.Orange;
+                    }
+                    else if (b.get_id() == "Memory")
+                    {
+                        color = System.Drawing.Color.Cyan;
+                    }
+                    else
+                    {
+                        color = System.Drawing.Color.GreenYellow;
+                    }
+                    System.Drawing.Graphics formGraphics = this.CreateGraphics();
+
+                    System.Drawing.Font waiting_font = new System.Drawing.Font("Arial", 13);
+                    System.Drawing.Font turn_font = new System.Drawing.Font("Arial", 13);
+                    System.Drawing.Font drawFont = new System.Drawing.Font("Arial", 8);
+                    System.Drawing.Font time_font = new System.Drawing.Font("Arial", 8);
+                    System.Drawing.Pen pen = new System.Drawing.Pen(System.Drawing.Color.Black);
+
+                    System.Drawing.SolidBrush rec_brush = new System.Drawing.SolidBrush(color);
+                    System.Drawing.SolidBrush font_brush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
+
+                    rec_length = (chart_length / (int)total_size) * ((int)b.get_size());
+
+                    Rectangle temp = new Rectangle(x, y, chart_width, rec_length);
+                    formGraphics.DrawRectangle(pen, temp);
+                    formGraphics.FillRectangle(rec_brush, temp);
+
+                    formGraphics.DrawString(b.get_id(), drawFont, font_brush, x + 20, y + (rec_length - 1) / 2);
+                    formGraphics.DrawString((b.get_size() + b.get_address()).ToString(), time_font, font_brush, x + chart_width, y + rec_length - 4);
+
+                    drawFont.Dispose();
+                    turn_font.Dispose();
+                    waiting_font.Dispose();
+                    font_brush.Dispose();
+                    rec_brush.Dispose();
+                    formGraphics.Dispose();
+
+                    y += rec_length;
+                }
             }
         }
     }
