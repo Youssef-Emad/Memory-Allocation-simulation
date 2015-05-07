@@ -151,14 +151,65 @@ namespace memory_allocator
                         }
                         else if (best_fit.Checked == true)
                         {
-                            
+                            decimal difference = holes_list[j].get_size() - processes_list[i].get_size();
+                            if (difference < capacity && difference >= 0)
+                            {
+                                capacity = difference;
+                                index = j;
+                            }
                         }
                         else if (worst_fit.Checked == true)
                         {
-                            
+                            decimal difference = holes_list[j].get_size() - processes_list[i].get_size();
+                            if (difference > capacity)
+                            {
+                                capacity = difference;
+                                index = j;
+                            }
+                        }
+                    }
+
+                    if (best_fit.Checked == true || worst_fit.Checked == true)
+                    {
+                        drawing_block b = new drawing_block(processes_list[i].get_id(), holes_list[index].get_address(), processes_list[i].get_size());
+                        draw_list.Add(b);
+                        holes_list[index].update(holes_list[index].get_address() + processes_list[i].get_size(), holes_list[index].get_size() - processes_list[i].get_size());
+
+                        if (best_fit.Checked)
+                        {
+                            capacity = 1000;
+                        }
+                        else
+                        {
+                            capacity = 0;
                         }
                     }
                 }
+
+                for (int i = 0; i < holes_list.Count(); i++)
+                {
+                    if (holes_list[i].get_size() > 0)
+                    {
+                        drawing_block b = new drawing_block("Memory", holes_list[i].get_address(), holes_list[i].get_size());
+                        draw_list.Add(b);
+                    }
+                }
+
+                draw_list = draw_list.OrderBy(drawing_block => drawing_block.get_address()).ToList();
+
+                for (int i = 0; i < draw_list.Count - 1; i++)
+                {
+                    decimal next_address = draw_list[i + 1].get_address();
+                    decimal address_size = draw_list[i].get_address() + draw_list[i].get_size();
+
+                    if (next_address > address_size && draw_list[i].get_id() != "")
+                    {
+                        drawing_block b = new drawing_block("", address_size, next_address - address_size);
+                        total_size += next_address - address_size;
+                        draw_list.Add(b);
+                    }
+                }
+
             }
         }
     }

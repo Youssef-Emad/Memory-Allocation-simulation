@@ -264,6 +264,7 @@
             this.allocate_button.TabIndex = 3;
             this.allocate_button.Text = "Allocate";
             this.allocate_button.UseVisualStyleBackColor = true;
+            this.allocate_button.Click += new System.EventHandler(this.allocate_button_Click);
             // 
             // Form1
             // 
