@@ -51,6 +51,10 @@ namespace memory_allocator
                 {
                     MessageBox.Show("Starting address already exists");
                 }
+                else if (hole_size_input.Value == 0)
+                {
+                    MessageBox.Show("Hole size can't be equal zero");
+                }
                 else
                 {
                     hole h = new hole("Memory", hole_size_input.Value, address_input.Value);
