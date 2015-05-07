@@ -15,5 +15,35 @@ namespace memory_allocator
         {
             InitializeComponent();
         }
+
+        private void first_fit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void best_fit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void worst_fit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void hole_button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void process_button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void allocate_button_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
