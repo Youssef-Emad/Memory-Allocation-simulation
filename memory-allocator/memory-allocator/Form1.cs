@@ -67,7 +67,16 @@ namespace memory_allocator
 
         private void process_button_Click(object sender, EventArgs e)
         {
-            if (processes < processes_count.Value)
+            if (holes == holes_count.Value && holes != 0)
+            {
+                decimal max_hole_size = 0;
+                for (int i = 0; i < holes_list.Count; i++)
+                {
+                    if (holes_list[i].get_size() > max_hole_size)
+                        max_hole_size = holes_list[i].get_size();
+                }
+
+                if (processes < processes_count.Value)
                 {
                     if (processes_list.Exists(process => process.get_id() == "P" + process_id_input.Value.ToString()))
                     {
@@ -83,11 +92,7 @@ namespace memory_allocator
                     }
                     else
                     {
-                        process p = new process("P" + process_id_input.Value.ToString(), process_size_input.Value);
-                        processes_list.Add(p);
-                        process_size_input.Value = 0;
-                        process_id_input.Value = 0;
-                        processes++;
+                        
                     }
                 }
                 else
@@ -95,7 +100,7 @@ namespace memory_allocator
                     MessageBox.Show("Unable to add process , Please increment the number of processes");
                 }
             }
-            else 
+            else
             {
                 MessageBox.Show("Enter the holes first");
             }
