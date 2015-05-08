@@ -47,6 +47,8 @@ namespace memory_allocator
         {
             if (holes < holes_count.Value)
             {
+                bool add = true;
+
                 if (holes_list.Exists(hole => hole.get_address() == address_input.Value))
                 {
                     MessageBox.Show("Starting address already exists");
@@ -56,6 +58,26 @@ namespace memory_allocator
                     MessageBox.Show("Hole size can't be equal zero");
                 }
                 else
+                {
+                    decimal input_address_size = address_input.Value + hole_size_input.Value;
+                    for (int i = 0; i < holes_list.Count; i++)
+                    {
+                        decimal hole_address_size = holes_list[i].get_address() + holes_list[i].get_size();
+                        if ( address_input.Value > holes_list[i].get_address() && hole_address_size > address_input.Value)
+                        {
+                            MessageBox.Show("Intersecting holes , Please increment hole address");
+                            add = false;
+                            break;
+                        }
+                        else if (address_input.Value < holes_list[i].get_address() && input_address_size > holes_list[i].get_address() && input_address_size < hole_address_size)
+                        {
+                            MessageBox.Show("Intersecting holes , Please decrease hole size");
+                            add = false;
+                            break;
+                        }
+                    }
+                }
+                if (add)
                 {
                     hole h = new hole("Memory", hole_size_input.Value, address_input.Value);
                     holes_list.Add(h);
@@ -276,8 +298,18 @@ namespace memory_allocator
         {
             allocate_button.Visible = true;
             reset_button.Visible = false;
+
+            holes_list.Clear();
+            processes_list.Clear();
+            draw_list.Clear();
+
             processes_count.Value = 0;
             holes_count.Value = 0;
+            holes = 0;
+            processes = 0;
+
+            total_size = 0;
+
             this.CreateGraphics().Clear(Form.ActiveForm.BackColor);
         }
     }
