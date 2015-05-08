@@ -60,5 +60,10 @@ namespace memory_allocator
             size = s;
         }
 
+        public void increase_size(decimal s)
+        {
+            size += s;
+        }
+
     }
 }
