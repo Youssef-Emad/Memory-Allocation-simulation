@@ -75,6 +75,16 @@ namespace memory_allocator
                             add = false;
                             break;
                         }
+                        else if (hole_address_size == address_input.Value)
+                        {
+                            holes_list[i].increase_size(hole_size_input.Value);
+
+                            total_size += hole_size_input.Value;
+                            holes++;
+                            address_input.Value = 0;
+                            hole_size_input.Value = 0;
+                            add = false;
+                        }
                     }
                 }
                 if (add)
