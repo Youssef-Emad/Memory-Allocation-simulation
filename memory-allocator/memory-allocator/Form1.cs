@@ -159,8 +159,18 @@ namespace memory_allocator
             }
             else
             {
+                if (best_fit.Checked == true)
+                {
+                    capacity = 1000;
+                }
+                else if (worst_fit.Checked == true)
+                {
+                    capacity = 0; 
+                }
+
                 allocate_button.Visible = false;
                 reset_button.Visible = true;
+
                 int x = this.Width - 120;
                 int y = 10;
                 int chart_length = this.Height - 60;
