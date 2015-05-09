@@ -52,10 +52,12 @@ namespace memory_allocator
                 if (holes_list.Exists(hole => hole.get_address() == address_input.Value))
                 {
                     MessageBox.Show("Starting address already exists");
+                    add = false;
                 }
                 else if (hole_size_input.Value == 0)
                 {
                     MessageBox.Show("Hole size can't be equal zero");
+                    add = false;
                 }
                 else
                 {
@@ -240,6 +242,17 @@ namespace memory_allocator
                     }
                 }
 
+                holes_list = holes_list.OrderBy(hole => hole.get_address()).ToList();
+
+                for (int i = 0; i < holes_list.Count() - 1; i++ )
+                {
+                    if (holes_list[i].get_address() + holes_list[i].get_size() == holes_list[i + 1].get_address())
+                    {
+                        holes_list[i].increase_size(holes_list[i + 1].get_size());
+                        holes_list[i + 1].set_size(0);
+                    }
+                }
+
                 for (int i = 0; i < holes_list.Count(); i++)
                 {
                     if (holes_list[i].get_size() > 0)
@@ -266,6 +279,8 @@ namespace memory_allocator
 
                 draw_list = draw_list.OrderBy(drawing_block => drawing_block.get_address()).ToList();
 
+                Color[] colors = { System.Drawing.Color.Yellow,System.Drawing.Color.Crimson };
+                int color_counter = 0;
                 foreach (drawing_block b in draw_list)
                 {
                     Color color;
@@ -280,7 +295,8 @@ namespace memory_allocator
                     }
                     else
                     {
-                        color = System.Drawing.Color.Yellow;
+                        color = colors[color_counter];
+                        color_counter = (color_counter+1 )% 2;
                     }
                     System.Drawing.Graphics formGraphics = this.CreateGraphics();
 
