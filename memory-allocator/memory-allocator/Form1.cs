@@ -88,6 +88,20 @@ namespace memory_allocator
                             add = false;
                         }
                     }
+
+                    holes_list = holes_list.OrderBy(hole => hole.get_address()).ToList();
+
+                    for (int k = 0; k < holes_list.Count() - 1; k++)
+                    {
+                        for (int j = k + 1; j < holes_list.Count() ; j++)
+                        {
+                            if (holes_list[k].get_address() + holes_list[k].get_size() == holes_list[j].get_address())
+                            {
+                                holes_list[k].increase_size(holes_list[j].get_size());
+                                holes_list[j].set_size(0);
+                            }
+                        }
+                    }
                 }
                 if (add)
                 {
@@ -242,22 +256,11 @@ namespace memory_allocator
                     }
                 }
 
-                holes_list = holes_list.OrderBy(hole => hole.get_address()).ToList();
-
-                for (int i = 0; i < holes_list.Count() - 1; i++ )
-                {
-                    if (holes_list[i].get_address() + holes_list[i].get_size() == holes_list[i + 1].get_address())
-                    {
-                        holes_list[i].increase_size(holes_list[i + 1].get_size());
-                        holes_list[i + 1].set_size(0);
-                    }
-                }
-
                 for (int i = 0; i < holes_list.Count(); i++)
                 {
                     if (holes_list[i].get_size() > 0)
                     {
-                        drawing_block b = new drawing_block("Memory", holes_list[i].get_address(), holes_list[i].get_size());
+                        drawing_block b = new drawing_block("Hole", holes_list[i].get_address(), holes_list[i].get_size());
                         draw_list.Add(b);
                     }
                 }
@@ -289,7 +292,7 @@ namespace memory_allocator
                     {
                         color = System.Drawing.Color.Black;
                     }
-                    else if (b.get_id() == "Memory")
+                    else if (b.get_id() == "Hole")
                     {
                         color = System.Drawing.Color.Orange;
                     }
